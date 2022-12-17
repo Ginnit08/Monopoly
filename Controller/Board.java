@@ -1,9 +1,10 @@
+package Controller;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class Board extends JPanel {
+public class Board extends JFrame {
     private Image imgB;
     public Board() {
         try {
