@@ -55,18 +55,34 @@ public class MainFrame extends JFrame{
             }
         });
 
-        JButton musicBtn = new JButton("Music");
+        JButton musicBtn = new JButton("Music ON/OFF");
         musicBtn.setIcon(new ImageIcon("/img/btn.jpg"));
         musicBtn.setBounds(700, 500, 200, 75);
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
+        musicBtn.addActionListener(new ActionListener() {
+            final Sound BGM = new Sound();
+            final boolean value = false;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BGM.playBGM("D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav", value);
+            }
+        });
 
         JButton exitBtn = new JButton("Exit");
         exitBtn.setBounds(1300, 700, 200, 75);
         exitBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         exitBtn.setIconTextGap(-15);
         exitBtn.setFocusable(false);
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == exitBtn) {
+                    MainFrame.this.dispose();
+                }
+            }
+        });
 
         add(startBtn);
         add(musicBtn);
