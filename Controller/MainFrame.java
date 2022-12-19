@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.event.*; 
+
 
 public class MainFrame extends JFrame{
 
@@ -36,10 +38,16 @@ public class MainFrame extends JFrame{
         b1.setBounds(700, 400, 200, 75);
         b1.setFont(new Font("Comic Sans",Font.BOLD,25));
         b1.setIconTextGap(-15);
-        b1.setIcon(new ImageIcon("/img/btn.jpg"));
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                setVisible(false);
+                Board board = new Board();
+                board.setVisible(true);
+            }
+        });
 
         JButton b2 = new JButton("Music");
-        b2.setIcon(new ImageIcon("/img/btn.jpg"));
         b2.setBounds(700, 500, 200, 75);
         b2.setFont(new Font("Comic Sans",Font.BOLD,25));
         b2.setIconTextGap(-15);
@@ -48,6 +56,12 @@ public class MainFrame extends JFrame{
         b3.setBounds(1300, 700, 200, 75);
         b3.setFont(new Font("Comic Sans",Font.BOLD,25));
         b3.setIconTextGap(-15);
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+               dispose();
+            }
+        });
 
         add(b1);
         add(b2);
