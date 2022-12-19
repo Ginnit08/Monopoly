@@ -36,10 +36,8 @@ public class MainFrame extends JFrame{
         b1.setBounds(700, 400, 200, 75);
         b1.setFont(new Font("Comic Sans",Font.BOLD,25));
         b1.setIconTextGap(-15);
-        b1.setIcon(new ImageIcon("/img/btn.jpg"));
 
         JButton b2 = new JButton("Music");
-        b2.setIcon(new ImageIcon("/img/btn.jpg"));
         b2.setBounds(700, 500, 200, 75);
         b2.setFont(new Font("Comic Sans",Font.BOLD,25));
         b2.setIconTextGap(-15);
