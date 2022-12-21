@@ -46,11 +46,7 @@ public class MainFrame extends JFrame{
         startBtn.setFocusable(false);
         startBtn.addActionListener(e -> {
             MainFrame.this.dispose();
-            try {
-                Board board = new Board();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            Board board = new Board();
         });
 
         JButton musicBtn = new JButton("MUSIC ON");
@@ -60,6 +56,8 @@ public class MainFrame extends JFrame{
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
         musicBtn.addActionListener(e -> BGM.playBGM("Sound\\BGM.wav"));
+        musicBtn.addActionListener(e -> BGM.playBGM("Sound/BGM.wav"));
+
 
         JButton exitBtn = new JButton("Exit");
         exitBtn.setBounds(1300, 700, 200, 75);
