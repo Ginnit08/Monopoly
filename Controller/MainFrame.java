@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.*; 
-
 
 
 public class MainFrame extends JFrame{
@@ -39,34 +37,6 @@ public class MainFrame extends JFrame{
         welcome.setBounds(550, 45, 700, 100);
         welcome.setFont(new Font("Comic Sans", Font.BOLD, 50));
 
-<<<<<<< HEAD
-        JButton b1 = new JButton("Start");
-        b1.setBounds(700, 400, 200, 75);
-        b1.setFont(new Font("Comic Sans",Font.BOLD,25));
-        b1.setIconTextGap(-15);
-        b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                setVisible(false);
-                Board board = new Board();
-                board.setVisible(true);
-            }
-        });
-
-        JButton b2 = new JButton("Music");
-        b2.setBounds(700, 500, 200, 75);
-        b2.setFont(new Font("Comic Sans",Font.BOLD,25));
-        b2.setIconTextGap(-15);
-        
-        JButton b3 = new JButton("Exit");
-        b3.setBounds(1300, 700, 200, 75);
-        b3.setFont(new Font("Comic Sans",Font.BOLD,25));
-        b3.setIconTextGap(-15);
-        b3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-               dispose();
-=======
 
         JButton startBtn = new JButton("Start");
         startBtn.setBounds(700, 400, 200, 75);
@@ -76,12 +46,7 @@ public class MainFrame extends JFrame{
         startBtn.setFocusable(false);
         startBtn.addActionListener(e -> {
             MainFrame.this.dispose();
-            try {
-                Board board = new Board();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
->>>>>>> Duy
-            }
+            Board board = new Board();
         });
 
         JButton musicBtn = new JButton("MUSIC ON");
@@ -90,7 +55,7 @@ public class MainFrame extends JFrame{
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
-        musicBtn.addActionListener(e -> BGM.playBGM("Sound\\BGM.wav"));
+        musicBtn.addActionListener(e -> BGM.playBGM("Sound/BGM.wav"));
 
         JButton exitBtn = new JButton("Exit");
         exitBtn.setBounds(1300, 700, 200, 75);
