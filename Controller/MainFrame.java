@@ -59,7 +59,7 @@ public class MainFrame extends JFrame{
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
-        musicBtn.addActionListener(e -> BGM.playBGM("D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav"));
+        musicBtn.addActionListener(e -> BGM.playBGM("Sound\\BGM.wav"));
 
         JButton exitBtn = new JButton("Exit");
         exitBtn.setBounds(1300, 700, 200, 75);

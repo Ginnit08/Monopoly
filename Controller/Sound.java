@@ -14,7 +14,7 @@ public class Sound {
             Clip clip = AudioSystem.getClip();
             clip.open(inputStream);
             if (!this.getMusicSwitch()) {
-                clip.start();
+                clip.loop(-1);
                 System.out.println("music on");
                 System.out.println(getMusicSwitch());
             } else {
