@@ -11,6 +11,7 @@ import java.io.IOException;
 
 
 public class MainFrame extends JFrame{
+    protected Sound BGM = new Sound();
 
     public MainFrame() {
 
@@ -43,44 +44,31 @@ public class MainFrame extends JFrame{
         startBtn.setIconTextGap(-15);
         startBtn.setIcon(new ImageIcon("/img/btn.jpg"));
         startBtn.setFocusable(false);
-        startBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainFrame.this.dispose();
-                try {
-                    Board board = new Board();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+        startBtn.addActionListener(e -> {
+            MainFrame.this.dispose();
+            try {
+                Board board = new Board();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
-        JButton musicBtn = new JButton("Music ON/OFF");
+        JButton musicBtn = new JButton("MUSIC ON");
         musicBtn.setIcon(new ImageIcon("/img/btn.jpg"));
         musicBtn.setBounds(700, 500, 200, 75);
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
-        musicBtn.addActionListener(new ActionListener() {
-            final Sound BGM = new Sound();
-            final boolean value = false;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BGM.playBGM("D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav", value);
-            }
-        });
+        musicBtn.addActionListener(e -> BGM.playBGM("D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav"));
 
         JButton exitBtn = new JButton("Exit");
         exitBtn.setBounds(1300, 700, 200, 75);
         exitBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         exitBtn.setIconTextGap(-15);
         exitBtn.setFocusable(false);
-        exitBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == exitBtn) {
-                    MainFrame.this.dispose();
-                }
+        exitBtn.addActionListener(e -> {
+            if (e.getSource() == exitBtn) {
+                MainFrame.this.dispose();
             }
         });
 

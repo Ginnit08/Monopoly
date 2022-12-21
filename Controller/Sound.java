@@ -8,15 +8,19 @@ import java.io.IOException;
 
 public class Sound {
     private boolean musicSwitch;
-    public void playBGM(String path, boolean value) {
+    public void playBGM(String path) {
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
             Clip clip = AudioSystem.getClip();
-            if (!value) {
-                clip.open(inputStream);
-                clip.loop(-1);
-                setMusicSwitch(true);
+            clip.open(inputStream);
+            if (!this.getMusicSwitch()) {
+                clip.start();
                 System.out.println("music on");
+                System.out.println(getMusicSwitch());
+            } else {
+                clip.stop();
+                System.out.println("music off");
+                System.out.println(getMusicSwitch());
             }
         } catch (UnsupportedAudioFileException | IOException u) {
             u.printStackTrace();
