@@ -15,12 +15,8 @@ public class Sound {
             clip.open(inputStream);
             if (!this.getMusicSwitch()) {
                 clip.loop(-1);
-                System.out.println("music on");
-                System.out.println(getMusicSwitch());
             } else {
                 clip.stop();
-                System.out.println("music off");
-                System.out.println(getMusicSwitch());
             }
         } catch (UnsupportedAudioFileException | IOException u) {
             u.printStackTrace();
