@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7b77e7-6596-42ff-880d-027346e943f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller/Square.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/Controller/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/Controller/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/Controller/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/Controller/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/Controller/Board$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/Controller/Board$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/Controller/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/Controller/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Monopoly/Controller/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Monopoly/Controller/Square.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

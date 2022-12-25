@@ -55,12 +55,11 @@ public class Square extends JPanel {
 
         if(rotationDegrees == 0) {
             nameLabel = new JLabel(labelString);
-            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+            nameLabel.setFont(new Font("Lucida Grande", Font.BOLD, 12));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
             nameLabel.setBounds(0,20,this.getWidth(),20);
             this.add(nameLabel);
         } else {
-            // rotating a Jlabel: https://www.daniweb.com/programming/software-development/threads/390060/rotate-jlabel-or-image-in-label
 
             nameLabel = new JLabel(labelString) {
                 protected void paintComponent(Graphics g) {
@@ -89,7 +88,7 @@ public class Square extends JPanel {
             if(rotationDegrees == 135 || rotationDegrees == -135 || rotationDegrees == -45 || rotationDegrees == 45) {
                 nameLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
             }
-            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+            nameLabel.setFont(new Font("Lucida Grande", Font.BOLD, 12));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
             this.add(nameLabel);
@@ -104,21 +103,48 @@ public class Square extends JPanel {
             g.setColor(Color.BLUE);
             g.fillRect(0, this.getHeight()-20, this.getWidth(), 20);
         }
-        if(this.number == 6 || this.number == 8 || this.number == 9) {
+
+        if(this.number == 5 || this.number == 6 || this.number == 7) {
+            g.drawRect(0, this.getHeight()-20, this.getWidth(), 20);
+            g.setColor(new Color(0x8B21E0));
+            g.fillRect(0, this.getHeight()-20, this.getWidth(), 20);
+        }
+
+        if(this.number == 9 || this.number == 11 || this.number == 12) {
             g.drawRect(0, 0, 20, this.getHeight());
-            g.setColor(Color.PINK);
+            g.setColor(new Color(234, 75, 6));
             g.fillRect(0, 0, 20, this.getHeight());
         }
-        if(this.number == 11 || this.number == 13 || this.number == 14) {
+        if(this.number == 15 || this.number == 14) {
+            g.drawRect(0, 0, 20, this.getHeight());
+            g.setColor(new Color(17, 245, 174));
+            g.fillRect(0, 0, 20, this.getHeight());
+        }
+        if(this.number == 17 || this.number == 19) {
             g.drawRect(0, 0, this.getWidth(), 20);
-            g.setColor(Color.ORANGE);
+            g.setColor(new Color(77, 27, 27));
             g.fillRect(0, 0, this.getWidth(), 20);
         }
-        if(this.number == 16 || this.number == 17 || this.number == 19) {
-            g.drawRect(this.getWidth()-20, 0, 20, this.getHeight());
-            g.setColor(Color.GREEN);
-            g.fillRect(this.getWidth()-20, 0, 20, this.getHeight());
+
+        if(this.number == 20 || this.number == 21 || this.number == 23) {
+            g.drawRect(0, 0, this.getWidth(), 20);
+            g.setColor(new Color(234, 93, 164, 216));
+            g.fillRect(0, 0, this.getWidth(), 20);
         }
+
+        if(this.number == 25 || this.number == 26 || this.number == 27) {
+            g.drawRect(this.getWidth() - 20, 0, 20, this.getHeight());
+            g.setColor(new Color(128, 148, 61, 216));
+            g.fillRect(this.getWidth() - 20, 0, 20, this.getHeight());
+        }
+
+        if(this.number == 29 || this.number == 30 || this.number == 31) {
+            g.drawRect(this.getWidth() - 20, 0, 20, this.getHeight());
+            g.setColor(new Color(91, 243, 4, 216));
+            g.fillRect(this.getWidth() - 20, 0, 20, this.getHeight());
+        }
+
+
 
     }
 
