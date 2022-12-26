@@ -45,11 +45,6 @@ public class Board extends JFrame {
 
         // Game running
         JPanel game = new JPanel();
-        Dice dice1 = new Dice(screenHeight + 50, 50, 50, 50);
-        game.add(dice1);
-
-        Dice dice2 = new Dice(screenHeight + 150, 50, 50, 50);
-        game.add(dice2);
         game.setBounds(screenHeight, 0, (screenWidth - screenHeight) / 2, screenHeight);
         game.setBackground(Color.GRAY);
 
@@ -60,21 +55,16 @@ public class Board extends JFrame {
         JPanel infoPlayer1 = new JPanel();
 		infoPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
         infoPlayer1.setBounds(screenHeight + (screenWidth - screenHeight) / 2, 0, (screenWidth - screenHeight) / 2, screenHeight/2 - 30);
-        infoPlayer1.add(new Player(1, Color.RED));
 
         JPanel infoPlayer2 = new JPanel();
 		infoPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
         infoPlayer2.setBounds(screenHeight + (screenWidth - screenHeight) / 2, infoPlayer1.getHeight() , (screenWidth - screenHeight) / 2, screenHeight/2);
-        infoPlayer2.add(new Player(2, Color.BLUE));
-
-
 
         add(infoPlayer1);
         add(infoPlayer2);
 
         add(boardGame);
         add(game);
-        // add(info);
 
         this.setVisible(true);
     }
