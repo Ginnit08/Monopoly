@@ -15,22 +15,10 @@ import java.util.ArrayList;
 public class Board extends JFrame {
     private ArrayList<Square> allSquares = new ArrayList<Square>();
     private ArrayList<Square> unbuyableSquares = new ArrayList<Square>(); // squares like "Go", "Chances" etc...
-
-    public ArrayList<Square> getUnbuyableSquares() {
-        return unbuyableSquares;
-    }
-
-    public ArrayList<Square> getAllSquares() {
-        return allSquares;
-    }
-
-    public Square getSquareAtIndex(int location) {
-        return allSquares.get(location);
-    }
-
     private int screenWidth = 1536;
     private int screenHeight = 864;
-
+    static int nowPlaying = 0;
+	static JTextArea infoConsole;
     public Board() {
         setTitle("Monopoly");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -323,6 +311,19 @@ public class Board extends JFrame {
 
     }
 
+    
+    public ArrayList<Square> getUnbuyableSquares() {
+        return unbuyableSquares;
+    }
+
+    public ArrayList<Square> getAllSquares() {
+        return allSquares;
+    }
+
+    public Square getSquareAtIndex(int location) {
+        return allSquares.get(location);
+    }
+    
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
     }
