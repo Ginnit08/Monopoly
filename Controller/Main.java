@@ -1,9 +1,5 @@
 package Controller;
 
-import java.awt.Color;
-
-import javax.swing.*;
-
 public class Main {
     MainFrame frame;
     public Main() {
