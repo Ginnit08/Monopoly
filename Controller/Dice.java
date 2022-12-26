@@ -13,12 +13,15 @@ public class Dice extends JPanel {
 	Random rnd = new Random();
 	int faceValue = 1;
 	
-	public Dice(int xCoord, int yCoord, int width, int height) {
+	public Dice() {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setBounds(xCoord, yCoord, width, height);
 		
 	}
 	
+	public Dice(String labelString) {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
+	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -62,13 +65,4 @@ public class Dice extends JPanel {
 	public int getFaceValue(){
 		return faceValue;
 	}
-	
-	public Dice(int xCoord, int yCoord, int width, int height, String labelString) {
-		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setBounds(xCoord, yCoord, width, height);
-		
-	}
-	
-	
-
 }

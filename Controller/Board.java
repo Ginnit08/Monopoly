@@ -17,13 +17,35 @@ public class Board extends JFrame {
     private ArrayList<Square> unbuyableSquares = new ArrayList<Square>(); // squares like "Go", "Chances" etc...
     private int screenWidth = 1536;
     private int screenHeight = 864;
+
+	static int turnCounter = 0;
     static int nowPlaying = 0;
 	static JTextArea infoConsole;
+
+	ArrayList<Player> players = new ArrayList<Player>();
+    JButton btnNextTurn;
+	JButton btnRollDice;
+	JButton btnPayRent;
+	JButton btnBuy;
+    JTextArea panelPlayer1TextArea;
+	JTextArea panelPlayer2TextArea;
+    Player player1;
+	Player player2;
+	Boolean doubleDiceForPlayer1 = false;
+	Boolean doubleDiceForPlayer2 = false;
+
+
     public Board() {
         setTitle("Monopoly");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        player1 = new Player(1, Color.RED);
+		players.add(player1);
+
+        player2 = new Player(2, Color.BLUE);
+		players.add(player2);
 
         //Board panels
         JPanel boardGame = new JPanel();
@@ -34,7 +56,14 @@ public class Board extends JFrame {
         // Game running
         JPanel game = new JPanel();
         game.setBounds(screenHeight, 0, (screenWidth - screenHeight) / 2, screenHeight);
-        game.setBackground(Color.GRAY);
+        game.setLayout(null);
+        infoConsole = new JTextArea();
+		infoConsole.setColumns(20);
+		infoConsole.setRows(5);
+		infoConsole.setBounds(game.getX() + 10, game.getY() + 10, game.getWidth() - 20, 80);
+        game.add(infoConsole);
+        infoConsole.setLineWrap(true);
+		infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
 
         // game info 
         JPanel info = new JPanel();
@@ -43,10 +72,42 @@ public class Board extends JFrame {
         JPanel infoPlayer1 = new JPanel();
 		infoPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
         infoPlayer1.setBounds(screenHeight + (screenWidth - screenHeight) / 2, 0, (screenWidth - screenHeight) / 2, screenHeight/2 - 30);
+        infoPlayer1.setBackground(Color.RED);
+        infoPlayer1.setLayout(null);
+        
+        
+        JLabel panelPlayer1Title = new JLabel("Player 1 All Wealth");
+		panelPlayer1Title.setForeground(Color.WHITE);
+		panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer1Title.setBounds(0, 0, infoPlayer1.getWidth(), 40);
+        
+        panelPlayer1TextArea = new JTextArea();
+        panelPlayer1TextArea.setBounds(10, panelPlayer1Title.getHeight(), infoPlayer1.getWidth() - 20, infoPlayer1.getHeight() - panelPlayer1Title.getHeight() - 10);
+        infoPlayer1.add(panelPlayer1Title);
+        infoPlayer1.add(panelPlayer1TextArea);
+
+
+
 
         JPanel infoPlayer2 = new JPanel();
 		infoPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
         infoPlayer2.setBounds(screenHeight + (screenWidth - screenHeight) / 2, infoPlayer1.getHeight() , (screenWidth - screenHeight) / 2, screenHeight/2);
+        infoPlayer2.setBackground(Color.BLUE);
+        infoPlayer2.setLayout(null);
+
+        JLabel panelPlayer2Title = new JLabel("Player 1 All Wealth");
+		panelPlayer2Title.setForeground(Color.WHITE);
+		panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer2Title.setBounds(0, 0, infoPlayer2.getWidth(), 40);
+
+        
+        panelPlayer2TextArea = new JTextArea();
+        panelPlayer2TextArea.setBounds(10, panelPlayer2Title.getHeight(), infoPlayer2.getWidth() - 20, infoPlayer2.getHeight() - panelPlayer2Title.getHeight() - 50);
+        infoPlayer2.add(panelPlayer2Title);
+        infoPlayer2.add(panelPlayer2TextArea);
+
+        updatePanelPlayer1TextArea();
+		updatePanelPlayer2TextArea();
 
         add(infoPlayer1);
         add(infoPlayer2);
@@ -327,4 +388,36 @@ public class Board extends JFrame {
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
     }
+
+    public void updatePanelPlayer2TextArea() {
+		// TODO Auto-generated method stub
+		String result = "";
+		result += "Current Balance: "+player2.getWallet()+"\n";
+		
+		result += "Title Deeds: \n";
+		for(int i = 0; i < player2.getTitleDeeds().size(); i++) {
+			result += " - "+ getAllSquares().get(player2.getTitleDeeds().get(i)).getName()+"\n";
+		}
+		
+		panelPlayer2TextArea.setText(result);
+	}
+
+	public void updatePanelPlayer1TextArea() {
+		// TODO Auto-generated method stub
+		String result = "";
+		result += "Current Balance: "+player1.getWallet()+"\n";
+		
+		result += "Title Deeds: \n";
+		for(int i = 0; i < player1.getTitleDeeds().size(); i++) {
+			result += " - "+ getAllSquares().get(player1.getTitleDeeds().get(i)).getName()+"\n";
+		}
+		
+		
+		panelPlayer1TextArea.setText(result);
+	}
+
+    public static void errorBox(String infoMessage, String titleBar) {
+		JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.ERROR_MESSAGE);
+	}
+
 }
