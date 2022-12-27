@@ -6,8 +6,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class Player extends JPanel {
@@ -19,7 +18,7 @@ public class Player extends JPanel {
 
 	private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
 	private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
-	private int wallet = 2000; // initial money
+	private int wallet = 1000; // initial money
 
 	public ArrayList<Integer> getTitleDeeds() {
 		return titleDeeds;

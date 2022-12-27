@@ -22,7 +22,7 @@ public class Board extends JFrame {
     static int nowPlaying = 0;
 	static JTextArea infoConsole;
 
-    protected Sound clickSound;
+    protected Sound clickSound = new Sound();
 
 	ArrayList<Player> players = new ArrayList<Player>();
     JButton btnNextTurn;
@@ -81,6 +81,7 @@ public class Board extends JFrame {
 					// player1's turn
 					int dice1OldValue = dice1.getFaceValue();
 					int dice2OldValue = dice2.getFaceValue();
+                    clickSound.btnSFX("Sound/click.wav");
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
@@ -118,6 +119,7 @@ public class Board extends JFrame {
 					// player2's turn
 					int dice1OldValue = dice1.getFaceValue();
 					int dice2OldValue = dice2.getFaceValue();
+                    clickSound.btnSFX("Sound/click.wav");
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
@@ -190,13 +192,16 @@ public class Board extends JFrame {
 				} else if(!doubleDiceForPlayer1 && !doubleDiceForPlayer2) {
 					nowPlaying = (nowPlaying + 1) % 2;
 				}
-				
+
+                if (nowPlaying == 0) {
+                    clickSound.btnSFX("Sound/Player1SFX.wav");
+                } else {
+                    clickSound.btnSFX("Sound/Player2SFX.wav");
+                }
 				updatePanelPlayer1TextArea();
 				updatePanelPlayer2TextArea();
 				infoConsole.setText("It's now player "+(nowPlaying==0 ? 1 : 2)+"'s turn!");
 			}
-
-		
 
 		});
 		btnNextTurn.setBounds(btnRollDice.getX(), btnRollDice.getY() + btnRollDice.getHeight() + 20, btnRollDice.getWidth(), 53);
@@ -206,6 +211,7 @@ public class Board extends JFrame {
         btnBuy = new JButton("Buy");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                clickSound.btnSFX("Sound/ka-ching.wav");
 				//turnCounter--; // decrease because we increased at the end of the rolldice
 				Player currentPlayer = players.get(nowPlaying);
 				infoConsole.setText("You bought "+getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getName());
@@ -229,6 +235,7 @@ public class Board extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				// turnCounter--;
+                clickSound.btnSFX("Sound/payRentSFX.wav");
 				Player currentPlayer = players.get(nowPlaying);
 				Player ownerOfTheSquare = players.get((Player.ledger.get(currentPlayer.getCurrentSquareNumber()))==1?0:1);
 				infoConsole.setText("You paid to the player "+ownerOfTheSquare.getPlayerNumber());

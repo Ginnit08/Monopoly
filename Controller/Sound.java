@@ -25,11 +25,12 @@ public class Sound {
         }
     }
 
-    public void btnSFX(){
+    public void btnSFX(String path){
         Thread thread = new Thread(() -> {
             try {
+                File click = new File(path);
                 Clip clip = AudioSystem.getClip();
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("Sound/click.wav"));
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(click);
                 clip.open(audioInputStream);
                 clip.start();
             } catch (Exception e) {
