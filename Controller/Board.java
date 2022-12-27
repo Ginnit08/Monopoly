@@ -578,13 +578,6 @@ public class Board extends JFrame {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(-35), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
                 super.paintComponent(g);
             }
         };
