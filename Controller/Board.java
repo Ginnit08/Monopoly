@@ -254,7 +254,7 @@ public class Board extends JFrame {
 
 
         JButton exitBtn = new JButton("Exit");
-        exitBtn.setBounds(btnRollDice.getX(), screenHeight - 200, btnRollDice.getWidth(), 55);
+        exitBtn.setBounds(btnRollDice.getX(), screenHeight - 160, btnRollDice.getWidth(), 40);
         exitBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         exitBtn.setIconTextGap(-15);
         exitBtn.setFocusable(false);
