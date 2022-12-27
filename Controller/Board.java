@@ -65,6 +65,8 @@ public class Board extends JFrame {
         game.add(infoConsole);
         infoConsole.setLineWrap(true);
 		infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
+        infoConsole.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
+
 
         Dice dice1 = new Dice(game.getX() + 120, infoConsole.getHeight() + 120, 40, 40);
         game.add(dice1);
@@ -601,6 +603,8 @@ public class Board extends JFrame {
 		}
 		
 		panelPlayer2TextArea.setText(result);
+        panelPlayer2TextArea.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
+
 	}
 
 	public void updatePanelPlayer1TextArea() {
@@ -615,6 +619,7 @@ public class Board extends JFrame {
 		
 		
 		panelPlayer1TextArea.setText(result);
+        panelPlayer1TextArea.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
 	}
 
     public static void errorBox(String infoMessage, String titleBar) {
