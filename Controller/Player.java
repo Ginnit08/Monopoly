@@ -17,9 +17,9 @@ public class Player extends JPanel {
 	static int totalPlayers = 0; // we might need this number later on
 	static HashMap<Integer, Integer> ledger= new HashMap<>();
 
-	private int currentSquareNumber = 0; // where player is currently located on (0 - 19). initially zero
+	private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
 	private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
-	private int wallet = 3200; // initial money
+	private int wallet = 2000; // initial money
 
 	public ArrayList<Integer> getTitleDeeds() {
 		return titleDeeds;
@@ -72,7 +72,6 @@ public class Player extends JPanel {
 	}
 
 	public Player(int playerNumber, Color color) {
-		// TODO Auto-generated constructor stub
 		this.playerNumber = playerNumber;
 		this.setBackground(color);
 		lblPlayerNumber = new JLabel(""+playerNumber);
@@ -249,9 +248,7 @@ public class Player extends JPanel {
 
 
 
-	// by comparing player's coordinates according to the board, we will get it's
-	// current square number
-	// currently unused, found a better way
+
 	public int getCurrentSquareNumberByCoordinates() {
 
 		int x = this.getX();

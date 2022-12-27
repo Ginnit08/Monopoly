@@ -66,7 +66,6 @@ public class Dice extends JPanel {
 	public Dice(int xCoord, int yCoord, int width, int height, String labelString) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(xCoord, yCoord, width, height);
-		
 	}
 	
 	
