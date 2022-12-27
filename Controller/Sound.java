@@ -7,23 +7,47 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Sound {
-    private boolean musicSwitch;
-    public void playBGM(String path) {
+    private boolean musicSwitch = false;
+    private static Clip clip;
+    private FloatControl fc;
+    private float currentVolume = -10;
+    private float previousVolume = 0;
+
+    public Sound() {
+        String path = "D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav";
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(inputStream);
-            if (!this.getMusicSwitch()) {
-                clip.loop(-1);
-            } else {
-                clip.stop();
-            }
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         } catch (UnsupportedAudioFileException | IOException u) {
             u.printStackTrace();
         } catch (LineUnavailableException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public void muteBGM() {
+        if (!musicSwitch) {
+            previousVolume = currentVolume;
+            currentVolume = -80;
+            fc.setValue(currentVolume);
+            musicSwitch = true;
+        } else if (musicSwitch) {
+            currentVolume = previousVolume;
+            fc.setValue(currentVolume);
+            musicSwitch = false;
+        }
+    }
+
+    public void playBGM() {
+        clip.start();
+        fc.setValue(-10);
+        clip.loop(-1);
+    }
+
+
+
 
     public void btnSFX(String path){
         Thread thread = new Thread(() -> {

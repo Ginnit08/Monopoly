@@ -37,6 +37,8 @@ public class Board extends JFrame {
 	Boolean doubleDiceForPlayer2 = false;
 
 
+
+
     public Board() {
         setTitle("Monopoly");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -260,14 +262,19 @@ public class Board extends JFrame {
 		btnPayRent.setEnabled(false);
 
 
-        JButton exitBtn = new JButton("Exit");
+        JButton exitBtn = new JButton("Menu");
         exitBtn.setBounds(btnRollDice.getX(), screenHeight - 160, btnRollDice.getWidth(), 40);
         exitBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         exitBtn.setIconTextGap(-15);
         exitBtn.setFocusable(false);
         exitBtn.addActionListener(e -> {
             if (e.getSource() == exitBtn) {
-                dispose();
+                int choice = JOptionPane.showConfirmDialog(this, "Are you sure?\nThe game will be reset", "Back to Menu", JOptionPane.YES_NO_OPTION);
+                if (choice == 0) {
+                    dispose();
+                    MainFrame frame = new MainFrame();
+                }
+
             }
         });
         game.add(exitBtn);
@@ -642,8 +649,8 @@ public class Board extends JFrame {
 		panelPlayer1TextArea.setText(result);
 	}
 
-    public static void errorBox(String infoMessage, String titleBar) {
-		JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.ERROR_MESSAGE);
-	}
+    public static void setNowPlaying(int nowPlaying) {
+        Board.nowPlaying = nowPlaying;
+    }
 
 }

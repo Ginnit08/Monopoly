@@ -50,12 +50,26 @@ public class MainFrame extends JFrame{
             Board board = new Board();
         });
 
+        JButton muteBtn = new JButton("MUTE");
+        muteBtn.setBounds(700, 600, 200, 75);
+        muteBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
+        muteBtn.setIconTextGap(-15);
+        muteBtn.setFocusable(false);
+        muteBtn.addActionListener(e -> {
+                BGM.muteBGM();
+                muteBtn.setText("UNMUTE");
+        });
+
         JButton musicBtn = new JButton("MUSIC ON");
         musicBtn.setBounds(700, 500, 200, 75);
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
-        musicBtn.addActionListener(e -> BGM.playBGM("Sound/BGM.wav"));
+        musicBtn.addActionListener(e -> {
+            BGM.playBGM();
+            musicBtn.setEnabled(false);
+        });
+
 
 
         JButton exitBtn = new JButton("Exit");
@@ -72,6 +86,7 @@ public class MainFrame extends JFrame{
 
         add(startBtn);
         add(musicBtn);
+        add(muteBtn);
         add(exitBtn);
         add(welcome);
         add(jLabel);
