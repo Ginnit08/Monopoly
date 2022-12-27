@@ -83,7 +83,6 @@ public class Board extends JFrame {
 					int dice2OldValue = dice2.getFaceValue();
 					dice1.rollDice();
 					dice2.rollDice();
-                    clickSound.btnSFX();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
 					if(dice1.getFaceValue() == dice2.getFaceValue()) {
 						doubleDiceForPlayer1 = true;

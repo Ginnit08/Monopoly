@@ -246,9 +246,7 @@ public class Player extends JPanel {
 		//ledger.put(this.getCurrentSquareNumber(), this.getPlayerNumber());
 	}
 
-
-
-
+	
 	public int getCurrentSquareNumberByCoordinates() {
 
 		int x = this.getX();
