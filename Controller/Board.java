@@ -557,7 +557,7 @@ public class Board extends JFrame {
                 Shape oldshape = g2.getClip();
                 double x = getWidth() / 2.0;
                 double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(-35), x, y);
+                aT.rotate(Math.toRadians(0), x, y);
                 g2.setTransform(aT);
                 g2.setClip(oldshape);
                 super.paintComponent(g);
