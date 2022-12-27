@@ -282,6 +282,7 @@ public class Board extends JFrame {
         JLabel panelPlayer1Title = new JLabel("Player 1 All Wealth");
 		panelPlayer1Title.setForeground(Color.WHITE);
 		panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer1Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
         panelPlayer1Title.setBounds(0, 0, infoPlayer1.getWidth(), 40);
         
         panelPlayer1TextArea = new JTextArea();
@@ -298,9 +299,10 @@ public class Board extends JFrame {
         infoPlayer2.setBackground(Color.BLUE);
         infoPlayer2.setLayout(null);
 
-        JLabel panelPlayer2Title = new JLabel("Player 1 All Wealth");
+        JLabel panelPlayer2Title = new JLabel("Player 2 All Wealth");
 		panelPlayer2Title.setForeground(Color.WHITE);
 		panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer2Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
         panelPlayer2Title.setBounds(0, 0, infoPlayer2.getWidth(), 40);
 
         
