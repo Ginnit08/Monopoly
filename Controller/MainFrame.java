@@ -46,6 +46,7 @@ public class MainFrame extends JFrame{
         startBtn.setFocusable(false);
         startBtn.addActionListener(e -> {
             MainFrame.this.dispose();
+            BGM.btnSFX("Sound/click.wav");
             Board board = new Board();
         });
 
@@ -64,6 +65,7 @@ public class MainFrame extends JFrame{
         exitBtn.setFocusable(false);
         exitBtn.addActionListener(e -> {
             if (e.getSource() == exitBtn) {
+                BGM.btnSFX("Sound/click.wav");
                 MainFrame.this.dispose();
             }
         });

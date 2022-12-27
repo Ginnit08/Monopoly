@@ -6,8 +6,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class Player extends JPanel {
@@ -17,9 +16,9 @@ public class Player extends JPanel {
 	static int totalPlayers = 0; // we might need this number later on
 	static HashMap<Integer, Integer> ledger= new HashMap<>();
 
-	private int currentSquareNumber = 0; // where player is currently located on (0 - 19). initially zero
+	private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
 	private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
-	private int wallet = 3200; // initial money
+	private int wallet = 1000; // initial money
 
 	public ArrayList<Integer> getTitleDeeds() {
 		return titleDeeds;
@@ -72,7 +71,6 @@ public class Player extends JPanel {
 	}
 
 	public Player(int playerNumber, Color color) {
-		// TODO Auto-generated constructor stub
 		this.playerNumber = playerNumber;
 		this.setBackground(color);
 		lblPlayerNumber = new JLabel(""+playerNumber);
@@ -246,70 +244,4 @@ public class Player extends JPanel {
 		}
 		//ledger.put(this.getCurrentSquareNumber(), this.getPlayerNumber());
 	}
-
-
-
-	// by comparing player's coordinates according to the board, we will get it's
-	// current square number
-	// currently unused, found a better way
-	public int getCurrentSquareNumberByCoordinates() {
-
-		int x = this.getX();
-		int y = this.getY();
-
-		if(x < 100) {
-			if(y < 100) {
-				return 0;
-			} else if(y > 100 && y < 200) {
-				return 19;
-			} else if(y > 200 && y < 300) {
-				return 18;
-			} else if(y > 300 && y < 400) {
-				return 17;
-			} else if(y > 400 && y < 500) {
-				return 16;
-			} else {
-				return 15;
-			}
-		} else if(x > 100 && x < 200) {
-			if(y < 100) {
-				return 1;
-			} else {
-				return 14;
-			}
-		} else if(x > 200 && x < 300) {
-			if(y < 100) {
-				return 2;
-			} else {
-				return 13;
-			}
-		} else if(x > 300 && x < 400) {
-			if(y < 100) {
-				return 3;
-			} else {
-				return 12;
-			}
-		}else if(x > 400 && x < 500) {
-			if(y < 100) {
-				return 4;
-			} else {
-				return 11;
-			}
-		} else {
-			if(y < 100) {
-				return 5;
-			} else if(y > 100 && y < 200) {
-				return 6;
-			} else if(y > 200 && y < 300) {
-				return 7;
-			} else if(y > 300 && y < 400) {
-				return 8;
-			} else if(y > 300 && y < 500) {
-				return 9;
-			} else {
-				return 10;
-			}
-		}
-	}
-
 }

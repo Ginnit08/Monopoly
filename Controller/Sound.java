@@ -25,6 +25,21 @@ public class Sound {
         }
     }
 
+    public void btnSFX(String path){
+        Thread thread = new Thread(() -> {
+            try {
+                File click = new File(path);
+                Clip clip = AudioSystem.getClip();
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(click);
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+    }
+
     public void setMusicSwitch(boolean musicSwitch) {
         this.musicSwitch = musicSwitch;
     }

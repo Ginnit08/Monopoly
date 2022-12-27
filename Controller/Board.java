@@ -22,6 +22,8 @@ public class Board extends JFrame {
     static int nowPlaying = 0;
 	static JTextArea infoConsole;
 
+    protected Sound clickSound = new Sound();
+
 	ArrayList<Player> players = new ArrayList<Player>();
     JButton btnNextTurn;
 	JButton btnRollDice;
@@ -77,11 +79,11 @@ public class Board extends JFrame {
         btnRollDice = new JButton("Roll Dice");
 		btnRollDice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if(nowPlaying == 0) {
 					// player1's turn
 					int dice1OldValue = dice1.getFaceValue();
 					int dice2OldValue = dice2.getFaceValue();
+                    clickSound.btnSFX("Sound/click.wav");
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
@@ -113,12 +115,13 @@ public class Board extends JFrame {
 						btnNextTurn.setEnabled(true);
 						btnPayRent.setEnabled(false);
 					} 
-					
+
 	
 				} else {
 					// player2's turn
 					int dice1OldValue = dice1.getFaceValue();
 					int dice2OldValue = dice2.getFaceValue();
+                    clickSound.btnSFX("Sound/click.wav");
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
@@ -175,10 +178,8 @@ public class Board extends JFrame {
 
         btnNextTurn = new JButton("Next Turn");
 		btnNextTurn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				btnRollDice.setEnabled(true);
 				btnBuy.setEnabled(false);
 				btnPayRent.setEnabled(false);
@@ -193,13 +194,16 @@ public class Board extends JFrame {
 				} else if(!doubleDiceForPlayer1 && !doubleDiceForPlayer2) {
 					nowPlaying = (nowPlaying + 1) % 2;
 				}
-				
+
+                if (nowPlaying == 0) {
+                    clickSound.btnSFX("Sound/Player1SFX.wav");
+                } else {
+                    clickSound.btnSFX("Sound/Player2SFX.wav");
+                }
 				updatePanelPlayer1TextArea();
 				updatePanelPlayer2TextArea();
 				infoConsole.setText("It's now player "+(nowPlaying==0 ? 1 : 2)+"'s turn!");
 			}
-
-		
 
 		});
 		btnNextTurn.setBounds(btnRollDice.getX(), btnRollDice.getY() + btnRollDice.getHeight() + 20, btnRollDice.getWidth(), 53);
@@ -209,6 +213,7 @@ public class Board extends JFrame {
         btnBuy = new JButton("Buy");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                clickSound.btnSFX("Sound/ka-ching.wav");
 				//turnCounter--; // decrease because we increased at the end of the rolldice
 				Player currentPlayer = players.get(nowPlaying);
 				infoConsole.setText("You bought "+getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getName());
@@ -232,6 +237,7 @@ public class Board extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				// turnCounter--;
+                clickSound.btnSFX("Sound/payRentSFX.wav");
 				Player currentPlayer = players.get(nowPlaying);
 				Player ownerOfTheSquare = players.get((Player.ledger.get(currentPlayer.getCurrentSquareNumber()))==1?0:1);
 				infoConsole.setText("You paid to the player "+ownerOfTheSquare.getPlayerNumber());
@@ -267,6 +273,7 @@ public class Board extends JFrame {
             }
         });
         game.add(exitBtn);
+
 
         // game info 
         JPanel info = new JPanel();
@@ -521,35 +528,60 @@ public class Board extends JFrame {
 
 
         // setting prices
-        square01.setPrice(100);
-        square03.setPrice(100);
-        square04.setPrice(120);
+        square01.setPrice(60);
+        square03.setPrice(65);
+        square04.setPrice(70);
+        square05.setPrice(70);
+        square06.setPrice(75);
+        square07.setPrice(75);
 
-        square05.setPrice(160);
-        square06.setPrice(140);
-        square07.setPrice(180);
+        square09.setPrice(85);
+        square10.setPrice(90);
+        square11.setPrice(95);
+        square12.setPrice(100);
+        square14.setPrice(100);
+        square15.setPrice(105);
 
-        square14.setPrice(200);
+        square17.setPrice(115);
+        square19.setPrice(115);
+        square20.setPrice(120);
+        square21.setPrice(120);
+        square23.setPrice(125);
 
-        square16.setPrice(300);
-        square17.setPrice(300);
-        square19.setPrice(320);
+        square25.setPrice(130);
+        square26.setPrice(130);
+        square27.setPrice(135);
+        square29.setPrice(135);
+        square30.setPrice(140);
+        square31.setPrice(145);
 
         // setting rent prices
-        square01.setRentPrice(6);
-        square03.setRentPrice(6);
-        square04.setRentPrice(8);
+        square01.setRentPrice(5);
+        square03.setRentPrice(5);
+        square04.setRentPrice(10);
+        square05.setRentPrice(15);
+        square06.setRentPrice(15);
+        square07.setRentPrice(20);
 
-        square06.setRentPrice(10);
-        square08.setRentPrice(10);
-        square09.setRentPrice(12);
+        square09.setRentPrice(20);
+        square10.setRentPrice(25);
+        square11.setRentPrice(30);
+        square12.setRentPrice(35);
+        square14.setRentPrice(35);
+        square15.setRentPrice(40);
 
-        square11.setRentPrice(14);
-        square14.setRentPrice(16);
+        square17.setRentPrice(45);
+        square19.setRentPrice(50);
+        square20.setRentPrice(60);
+        square21.setRentPrice(65);
+        square23.setRentPrice(65);
 
-        square16.setRentPrice(26);
-        square17.setRentPrice(26);
-        square19.setRentPrice(28);
+        square25.setRentPrice(70);
+        square26.setRentPrice(75);
+        square27.setRentPrice(70);
+        square29.setRentPrice(75);
+        square30.setRentPrice(80);
+        square31.setRentPrice(80);
 
 
         JLabel lblMonopoly = new JLabel("MONOPOLY") {
@@ -557,6 +589,7 @@ public class Board extends JFrame {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
+<<<<<<< HEAD
                 AffineTransform aT = g2.getTransform();
                 Shape oldshape = g2.getClip();
                 double x = getWidth() / 2.0;
@@ -564,6 +597,8 @@ public class Board extends JFrame {
                 aT.rotate(Math.toRadians(0), x, y);
                 g2.setTransform(aT);
                 g2.setClip(oldshape);
+=======
+>>>>>>> Duy
                 super.paintComponent(g);
             }
         };
