@@ -229,10 +229,10 @@ public class Player extends JPanel {
 	
 
 	public void move(int dicesTotal) {
-		if(currentSquareNumber + dicesTotal > 19) {
+		if(currentSquareNumber + dicesTotal > 31) {
 			depositToWallet(200);
 		}
-		int targetSquare = (currentSquareNumber + dicesTotal) % 20;
+		int targetSquare = (currentSquareNumber + dicesTotal) % 32; //%20
 		currentSquareNumber = targetSquare;
 		
 		if(Board.nowPlaying == 0) {

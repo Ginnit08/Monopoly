@@ -50,12 +50,10 @@ public class MainFrame extends JFrame{
         });
 
         JButton musicBtn = new JButton("MUSIC ON");
-        musicBtn.setIcon(new ImageIcon("/img/btn.jpg"));
         musicBtn.setBounds(700, 500, 200, 75);
         musicBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
         musicBtn.setIconTextGap(-15);
         musicBtn.setFocusable(false);
-        musicBtn.addActionListener(e -> BGM.playBGM("Sound\\BGM.wav"));
         musicBtn.addActionListener(e -> BGM.playBGM("Sound/BGM.wav"));
 
 
