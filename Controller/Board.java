@@ -332,7 +332,7 @@ public class Board extends JFrame {
 
     public void initializeCell() {
         String[] squareNames = {
-                "Go",
+                "GO",
                 "Ha Noi",
                 "Community Chest",
                 "Hai Phong",
@@ -340,7 +340,7 @@ public class Board extends JFrame {
                 "Cao Bang",
                 "Lang Son",
                 "Thai Nguyen",
-                "Roll once",
+                "JAIL",
                 "Son La",
                 "Squeeze Play",
                 "Ha Tien",
@@ -348,7 +348,7 @@ public class Board extends JFrame {
                 "Community Chest",
                 "Binh Thuan",
                 "Ninh Thuan",
-                "Free Parking",
+                "FREE PARKING",
                 "Khanh Hoa",
                 "Pay Taxes",
                 "Binh Duong",
@@ -356,7 +356,7 @@ public class Board extends JFrame {
                 "Dong Nai",
                 "Squeeze Play",
                 "Tay Ninh",
-                "Jail",
+                "GO TO JAIL",
                 "Vung Tau",
                 "Long An",
                 "Ben Tre",
