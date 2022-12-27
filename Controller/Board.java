@@ -296,7 +296,7 @@ public class Board extends JFrame {
         infoPlayer2.setBackground(Color.BLUE);
         infoPlayer2.setLayout(null);
 
-        JLabel panelPlayer2Title = new JLabel("Player 1 All Wealth");
+        JLabel panelPlayer2Title = new JLabel("Player 2 All Wealth");
 		panelPlayer2Title.setForeground(Color.WHITE);
 		panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
         panelPlayer2Title.setBounds(0, 0, infoPlayer2.getWidth(), 40);
