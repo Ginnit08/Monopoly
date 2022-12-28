@@ -16,7 +16,6 @@ public class Dice extends JPanel {
 	public Dice(int xCoord, int yCoord, int width, int height) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(xCoord, yCoord, width, height);
-		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -67,7 +66,4 @@ public class Dice extends JPanel {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(xCoord, yCoord, width, height);
 	}
-	
-	
-
 }

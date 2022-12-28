@@ -15,7 +15,6 @@ public class Player extends JPanel {
 	JLabel lblPlayerNumber;
 	static int totalPlayers = 0; // we might need this number later on
 	static HashMap<Integer, Integer> ledger= new HashMap<>();
-
 	private int currentSquareNumber = 0; // where player is currently located on (0 - 31). initially zero
 	private ArrayList<Integer> titleDeeds = new ArrayList<Integer>(); // squares that the player has
 	private int wallet = 1000; // initial money

@@ -36,8 +36,8 @@ public class Board extends JFrame {
     protected JTextArea panelPlayer2TextArea;
     protected Player player1;
     protected Player player2;
-	protected Boolean doubleDiceForPlayer1 = false;
-	protected Boolean doubleDiceForPlayer2 = false;
+    protected Boolean doubleDiceForPlayer1 = false;
+    protected Boolean doubleDiceForPlayer2 = false;
 
     protected MainFrame mainFrame;
 
@@ -48,10 +48,10 @@ public class Board extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         player1 = new Player(1, Color.RED);
-		players.add(player1);
+        players.add(player1);
         add(player1);
         player2 = new Player(2, Color.blue);
-		players.add(player2);
+        players.add(player2);
         add(player2);
 
         //Board panels
@@ -65,12 +65,12 @@ public class Board extends JFrame {
         game.setBounds(screenHeight, 0, (screenWidth - screenHeight) / 2, screenHeight);
         game.setLayout(null);
         infoConsole = new JTextArea();
-		infoConsole.setColumns(20);
-		infoConsole.setRows(5);
-		infoConsole.setBounds(game.getX() + 10, game.getY() + 50, game.getWidth() - 20, 80);
+        infoConsole.setColumns(20);
+        infoConsole.setRows(5);
+        infoConsole.setBounds(game.getX() + 10, game.getY() + 50, game.getWidth() - 20, 80);
         game.add(infoConsole);
         infoConsole.setLineWrap(true);
-		infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
+        infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
 
         Dice dice1 = new Dice(game.getX() + 120, infoConsole.getHeight() + 120, 40, 40);
         game.add(dice1);
@@ -79,194 +79,193 @@ public class Board extends JFrame {
         game.add(dice2);
 
         btnRollDice = new JButton("Roll Dice");
-		btnRollDice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(nowPlaying == 0) {
-					// player1's turn
-					int dice1OldValue = dice1.getFaceValue();
-					int dice2OldValue = dice2.getFaceValue();
+        btnRollDice.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (nowPlaying == 0) {
+                    // player1's turn
+                    int dice1OldValue = dice1.getFaceValue();
+                    int dice2OldValue = dice2.getFaceValue();
                     clickSound.btnSFX("Sound/click.wav");
-					dice1.rollDice();
-					dice2.rollDice();
-					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-					if(dice1.getFaceValue() == dice2.getFaceValue()) {
-						doubleDiceForPlayer1 = true;
-					} else {
-						doubleDiceForPlayer1 = false;
-					}
-					player1.move(dicesTotal);
-					if(Player.ledger.containsKey(player1.getCurrentSquareNumber()) // if bought by someone
-							&& Player.ledger.get(player1.getCurrentSquareNumber()) != player1.getPlayerNumber() // not by itself
-							) {
-						btnBuy.setEnabled(false);
-						btnRollDice.setEnabled(false);
-						btnNextTurn.setEnabled(false);
-						btnPayRent.setEnabled(true);
-					} 
-					if (Player.ledger.containsKey(player1.getCurrentSquareNumber()) // if bought by someone 
-							&& Player.ledger.get(player1.getCurrentSquareNumber()) == player1.getPlayerNumber()) { // and by itself
-						btnBuy.setEnabled(false);
-						btnPayRent.setEnabled(false);
-						btnNextTurn.setEnabled(true);
-					}
-					if(getUnbuyableSquares().contains(getAllSquares().get(player1.getCurrentSquareNumber()))) {
-						btnBuy.setEnabled(false);
-						btnNextTurn.setEnabled(true);
-					} else if (!Player.ledger.containsKey(player1.getCurrentSquareNumber())) { // if not bought by someone
-						btnBuy.setEnabled(true);
-						btnNextTurn.setEnabled(true);
-						btnPayRent.setEnabled(false);
-					} 
+                    dice1.rollDice();
+                    dice2.rollDice();
+                    int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
+                    if (dice1.getFaceValue() == dice2.getFaceValue()) {
+                        doubleDiceForPlayer1 = true;
+                    } else {
+                        doubleDiceForPlayer1 = false;
+                    }
+                    player1.move(dicesTotal);
+                    if (Player.ledger.containsKey(player1.getCurrentSquareNumber()) // if bought by someone
+                            && Player.ledger.get(player1.getCurrentSquareNumber()) != player1.getPlayerNumber() // not by itself
+                    ) {
+                        btnBuy.setEnabled(false);
+                        btnRollDice.setEnabled(false);
+                        btnNextTurn.setEnabled(false);
+                        btnPayRent.setEnabled(true);
+                    }
+                    if (Player.ledger.containsKey(player1.getCurrentSquareNumber()) // if bought by someone
+                            && Player.ledger.get(player1.getCurrentSquareNumber()) == player1.getPlayerNumber()) { // and by itself
+                        btnBuy.setEnabled(false);
+                        btnPayRent.setEnabled(false);
+                        btnNextTurn.setEnabled(true);
+                    }
+                    if (getUnbuyableSquares().contains(getAllSquares().get(player1.getCurrentSquareNumber()))) {
+                        btnBuy.setEnabled(false);
+                        btnNextTurn.setEnabled(true);
+                    } else if (!Player.ledger.containsKey(player1.getCurrentSquareNumber())) { // if not bought by someone
+                        btnBuy.setEnabled(true);
+                        btnNextTurn.setEnabled(true);
+                        btnPayRent.setEnabled(false);
+                    }
 
-	
-				} else {
-					// player2's turn
-					int dice1OldValue = dice1.getFaceValue();
-					int dice2OldValue = dice2.getFaceValue();
+                } else {
+                    // player2's turn
+                    int dice1OldValue = dice1.getFaceValue();
+                    int dice2OldValue = dice2.getFaceValue();
                     clickSound.btnSFX("Sound/click.wav");
-					dice1.rollDice();
-					dice2.rollDice();
-					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-					if(dice1.getFaceValue() == dice2.getFaceValue()) {
-						doubleDiceForPlayer2 = true;
-					} else {
-						doubleDiceForPlayer2 = false;
-					}
-					player2.move(dicesTotal);
-					if(Player.ledger.containsKey(player2.getCurrentSquareNumber()) // if bought by someone
-							&& Player.ledger.get(player2.getCurrentSquareNumber()) != player2.getPlayerNumber() // not by itself
-							) {
-						btnBuy.setEnabled(false);
-						btnRollDice.setEnabled(false);
-						btnNextTurn.setEnabled(false);
-						btnPayRent.setEnabled(true);
-					}
-					if(Player.ledger.containsKey(player2.getCurrentSquareNumber()) // if bought by someone 
-							&& Player.ledger.get(player2.getCurrentSquareNumber()) == player2.getPlayerNumber()) { // and by itself
-						btnBuy.setEnabled(false);
-						btnPayRent.setEnabled(false);
+                    dice1.rollDice();
+                    dice2.rollDice();
+                    int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
+                    if (dice1.getFaceValue() == dice2.getFaceValue()) {
+                        doubleDiceForPlayer2 = true;
+                    } else {
+                        doubleDiceForPlayer2 = false;
+                    }
+                    player2.move(dicesTotal);
+                    if (Player.ledger.containsKey(player2.getCurrentSquareNumber()) // if bought by someone
+                            && Player.ledger.get(player2.getCurrentSquareNumber()) != player2.getPlayerNumber() // not by itself
+                    ) {
+                        btnBuy.setEnabled(false);
+                        btnRollDice.setEnabled(false);
+                        btnNextTurn.setEnabled(false);
+                        btnPayRent.setEnabled(true);
+                    }
+                    if (Player.ledger.containsKey(player2.getCurrentSquareNumber()) // if bought by someone
+                            && Player.ledger.get(player2.getCurrentSquareNumber()) == player2.getPlayerNumber()) { // and by itself
+                        btnBuy.setEnabled(false);
+                        btnPayRent.setEnabled(false);
+                    }
+                    if (getUnbuyableSquares().contains(getAllSquares().get(player2.getCurrentSquareNumber()))) {
+                        btnBuy.setEnabled(false);
+                        btnNextTurn.setEnabled(true);
+                    } else if (!Player.ledger.containsKey(player2.getCurrentSquareNumber())) { // if not bought by someone
+                        btnBuy.setEnabled(true);
+                        btnNextTurn.setEnabled(true);
+                        btnPayRent.setEnabled(false);
+                    }
+                }
 
-					}
-					if(getUnbuyableSquares().contains(getAllSquares().get(player2.getCurrentSquareNumber()))) {
-						btnBuy.setEnabled(false);
-						btnNextTurn.setEnabled(true);
-					} else if (!Player.ledger.containsKey(player2.getCurrentSquareNumber())) { // if not bought by someone
-						btnBuy.setEnabled(true);
-						btnNextTurn.setEnabled(true);
-						btnPayRent.setEnabled(false);
-					}
+                btnRollDice.setEnabled(false);
+                if (doubleDiceForPlayer1 || doubleDiceForPlayer2) {
+                    infoConsole.setText("Click Next Turn to allow player " + (nowPlaying == 0 ? 1 : 2) + " to Roll Dice!");
+                } else {
+                    infoConsole.setText("Click Next Turn to allow player " + (nowPlaying == 0 ? 2 : 1) + " to Roll Dice!");
+                }
 
-				}
 
-				btnRollDice.setEnabled(false);
-				if(doubleDiceForPlayer1 || doubleDiceForPlayer2) {
-					infoConsole.setText("Click Next Turn to allow player "+ (nowPlaying==0 ? 1 : 2) +" to Roll Dice!");
-				} else {
-					infoConsole.setText("Click Next Turn to allow player "+ (nowPlaying==0 ? 2 : 1) +" to Roll Dice!");
-				}
-				
+                // we have to add below 2 lines to avoid some GUI breakdowns.
+                // layeredPane.remove(gameBoard);
+                // layeredPane.add(gameBoard, new Integer(0));
 
-				// we have to add below 2 lines to avoid some GUI breakdowns.
-				// layeredPane.remove(gameBoard);
-				// layeredPane.add(gameBoard, new Integer(0));
-				
-				updatePanelPlayer1TextArea();
-				updatePanelPlayer2TextArea();
+                updatePanelPlayer1TextArea();
+                updatePanelPlayer2TextArea();
 
-			}
-		});
-		btnRollDice.setBounds(infoConsole.getX() + 50, 300, game.getWidth() - 100, 53);
-		game.add(btnRollDice);
+            }
+        });
+        btnRollDice.setBounds(infoConsole.getX() + 50, 300, game.getWidth() - 100, 53);
+        game.add(btnRollDice);
 
         btnNextTurn = new JButton("Next Turn");
-		btnNextTurn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				btnRollDice.setEnabled(true);
-				btnBuy.setEnabled(false);
-				btnPayRent.setEnabled(false);
-				btnNextTurn.setEnabled(false);
-				
-				if(nowPlaying == 0 && doubleDiceForPlayer1) {
-					nowPlaying = 0;
-					doubleDiceForPlayer1 = false;
-				} else if(nowPlaying == 1 && doubleDiceForPlayer2) {
-					nowPlaying = 1;
-					doubleDiceForPlayer2 = false;
-				} else if(!doubleDiceForPlayer1 && !doubleDiceForPlayer2) {
-					nowPlaying = (nowPlaying + 1) % 2;
-				}
+        btnNextTurn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRollDice.setEnabled(true);
+                btnBuy.setEnabled(false);
+                btnPayRent.setEnabled(false);
+                btnNextTurn.setEnabled(false);
+
+                if (nowPlaying == 0 && doubleDiceForPlayer1) {
+                    nowPlaying = 0;
+                    doubleDiceForPlayer1 = false;
+                } else if (nowPlaying == 1 && doubleDiceForPlayer2) {
+                    nowPlaying = 1;
+                    doubleDiceForPlayer2 = false;
+                } else if (!doubleDiceForPlayer1 && !doubleDiceForPlayer2) {
+                    nowPlaying = (nowPlaying + 1) % 2;
+                }
 
                 if (nowPlaying == 0) {
                     clickSound.btnSFX("Sound/Player1SFX.wav");
                 } else {
                     clickSound.btnSFX("Sound/Player2SFX.wav");
                 }
-				updatePanelPlayer1TextArea();
-				updatePanelPlayer2TextArea();
-				infoConsole.setText("It's now player "+(nowPlaying==0 ? 1 : 2)+"'s turn!");
-			}
+                updatePanelPlayer1TextArea();
+                updatePanelPlayer2TextArea();
+                infoConsole.setText("It's now player " + (nowPlaying == 0 ? 1 : 2) + "'s turn!");
+            }
 
-		});
-		btnNextTurn.setBounds(btnRollDice.getX(), btnRollDice.getY() + btnRollDice.getHeight() + 20, btnRollDice.getWidth(), 53);
-		game.add(btnNextTurn);
-		btnNextTurn.setEnabled(false);
+        });
+        btnNextTurn.setBounds(btnRollDice.getX(), btnRollDice.getY() + btnRollDice.getHeight() + 20, btnRollDice.getWidth(), 53);
+        game.add(btnNextTurn);
+        btnNextTurn.setEnabled(false);
 
         btnBuy = new JButton("Buy");
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+        btnBuy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 clickSound.btnSFX("Sound/ka-ching.wav");
-				//turnCounter--; // decrease because we increased at the end of the rolldice
-				Player currentPlayer = players.get(nowPlaying);
-				infoConsole.setText("You bought "+getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getName());
-				currentPlayer.buyTitleDeed(currentPlayer.getCurrentSquareNumber());
-				int withdrawAmount = getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getPrice();
-				currentPlayer.withdrawFromWallet(withdrawAmount);
-				btnBuy.setEnabled(false);
-				updatePanelPlayer1TextArea();
-				updatePanelPlayer2TextArea();
-				//turnCounter++;
-			}
-		});
-		btnBuy.setBounds(btnRollDice.getX(), btnNextTurn.getY() + btnNextTurn.getHeight() + 20, btnRollDice.getWidth() / 2 - 10, 29);
-		btnBuy.setEnabled(false);
-		game.add(btnBuy);
+                //turnCounter--; // decrease because we increased at the end of the rolldice
+                Player currentPlayer = players.get(nowPlaying);
+                infoConsole.setText("You bought " + getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getName());
+                currentPlayer.buyTitleDeed(currentPlayer.getCurrentSquareNumber());
+                int withdrawAmount = getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getPrice();
+                currentPlayer.withdrawFromWallet(withdrawAmount);
+                btnBuy.setEnabled(false);
+                updatePanelPlayer1TextArea();
+                updatePanelPlayer2TextArea();
+                //turnCounter++;
+            }
+        });
+        btnBuy.setBounds(btnRollDice.getX(), btnNextTurn.getY() + btnNextTurn.getHeight() + 20, btnRollDice.getWidth() / 2 - 10, 29);
+        btnBuy.setEnabled(false);
+        game.add(btnBuy);
 
         btnPayRent = new JButton("Pay Rent");
-		btnPayRent.addActionListener(new ActionListener() {
+        btnPayRent.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				// turnCounter--;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                // turnCounter--;
                 clickSound.btnSFX("Sound/payRentSFX.wav");
-				Player currentPlayer = players.get(nowPlaying);
-				Player ownerOfTheSquare = players.get((Player.ledger.get(currentPlayer.getCurrentSquareNumber()))==1?0:1);
-				infoConsole.setText("You paid to the player "+ownerOfTheSquare.getPlayerNumber());
+                Player currentPlayer = players.get(nowPlaying);
+                Player ownerOfTheSquare = players.get((Player.ledger.get(currentPlayer.getCurrentSquareNumber())) == 1 ? 0 : 1);
+                infoConsole.setText("You paid to the player " + ownerOfTheSquare.getPlayerNumber());
 
-				int withdrawAmount = getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getRentPrice();
-				System.out.println(withdrawAmount);
-				currentPlayer.withdrawFromWallet(withdrawAmount);
-				ownerOfTheSquare.depositToWallet(withdrawAmount);
-				
-				btnNextTurn.setEnabled(true);
-				btnPayRent.setEnabled(false);
-				//currentPlayer.withdrawFromWallet(withdrawAmount);
-				updatePanelPlayer1TextArea();
-				updatePanelPlayer2TextArea();
-				//turnCounter++;
-				//gameBoard.getAllSquares().get(player1.getCurrentSquareNumber()).setRentPaid(true);
-			}
 
-		});
-		btnPayRent.setBounds(btnBuy.getX() + btnBuy.getWidth() + 20, btnBuy.getY(), btnBuy.getWidth(), 29);
-		game.add(btnPayRent);
-		btnPayRent.setEnabled(false);
+                //How players give and take money
+                int withdrawAmount = getAllSquares().get(currentPlayer.getCurrentSquareNumber()).getRentPrice();
+                System.out.println(withdrawAmount);
+                currentPlayer.withdrawFromWallet(withdrawAmount);
+                ownerOfTheSquare.depositToWallet(withdrawAmount);
+
+                btnNextTurn.setEnabled(true);
+                btnPayRent.setEnabled(false);
+                //currentPlayer.withdrawFromWallet(withdrawAmount);
+                updatePanelPlayer1TextArea();
+                updatePanelPlayer2TextArea();
+                //turnCounter++;
+                //gameBoard.getAllSquares().get(player1.getCurrentSquareNumber()).setRentPaid(true);
+            }
+
+        });
+        btnPayRent.setBounds(btnBuy.getX() + btnBuy.getWidth() + 20, btnBuy.getY(), btnBuy.getWidth(), 29);
+        game.add(btnPayRent);
+        btnPayRent.setEnabled(false);
 
 
         JButton exitBtn = new JButton("Menu");
         exitBtn.setBounds(btnRollDice.getX(), screenHeight - 160, btnRollDice.getWidth(), 40);
-        exitBtn.setFont(new Font("Comic Sans",Font.BOLD,25));
+        exitBtn.setFont(new Font("Comic Sans", Font.BOLD, 25));
         exitBtn.setIconTextGap(-15);
         exitBtn.setFocusable(false);
         exitBtn.addActionListener(e -> {
@@ -286,44 +285,42 @@ public class Board extends JFrame {
         info.setBounds(screenHeight + (screenWidth - screenHeight) / 2, 0, (screenWidth - screenHeight) / 2, screenHeight);
 
         JPanel infoPlayer1 = new JPanel();
-		infoPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
-        infoPlayer1.setBounds(screenHeight + (screenWidth - screenHeight) / 2, 0, (screenWidth - screenHeight) / 2, screenHeight/2 - 30);
+        infoPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
+        infoPlayer1.setBounds(screenHeight + (screenWidth - screenHeight) / 2, 0, (screenWidth - screenHeight) / 2, screenHeight / 2 - 30);
         infoPlayer1.setBackground(Color.RED);
         infoPlayer1.setLayout(null);
-        
-        
+
+
         JLabel panelPlayer1Title = new JLabel("Player 1 All Wealth");
-		panelPlayer1Title.setForeground(Color.WHITE);
-		panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer1Title.setForeground(Color.WHITE);
+        panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
         panelPlayer1Title.setBounds(0, 0, infoPlayer1.getWidth(), 40);
-        
+
         panelPlayer1TextArea = new JTextArea();
         panelPlayer1TextArea.setBounds(10, panelPlayer1Title.getHeight(), infoPlayer1.getWidth() - 20, infoPlayer1.getHeight() - panelPlayer1Title.getHeight() - 10);
         infoPlayer1.add(panelPlayer1Title);
         infoPlayer1.add(panelPlayer1TextArea);
 
 
-
-
         JPanel infoPlayer2 = new JPanel();
-		infoPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
-        infoPlayer2.setBounds(screenHeight + (screenWidth - screenHeight) / 2, infoPlayer1.getHeight() , (screenWidth - screenHeight) / 2, screenHeight/2);
+        infoPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
+        infoPlayer2.setBounds(screenHeight + (screenWidth - screenHeight) / 2, infoPlayer1.getHeight(), (screenWidth - screenHeight) / 2, screenHeight / 2);
         infoPlayer2.setBackground(Color.BLUE);
         infoPlayer2.setLayout(null);
 
         JLabel panelPlayer2Title = new JLabel("Player 2 All Wealth");
-		panelPlayer2Title.setForeground(Color.WHITE);
-		panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer2Title.setForeground(Color.WHITE);
+        panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
         panelPlayer2Title.setBounds(0, 0, infoPlayer2.getWidth(), 40);
 
-        
+
         panelPlayer2TextArea = new JTextArea();
         panelPlayer2TextArea.setBounds(10, panelPlayer2Title.getHeight(), infoPlayer2.getWidth() - 20, infoPlayer2.getHeight() - panelPlayer2Title.getHeight() - 50);
         infoPlayer2.add(panelPlayer2Title);
         infoPlayer2.add(panelPlayer2TextArea);
 
         updatePanelPlayer1TextArea();
-		updatePanelPlayer2TextArea();
+        updatePanelPlayer2TextArea();
 
         add(infoPlayer1);
         add(infoPlayer2);
@@ -416,7 +413,7 @@ public class Board extends JFrame {
 
         // squares on the right
 
-        int x_right =  706;
+        int x_right = 706;
         int y_right = 106;
 
         Square square09 = new Square(x_right, 106, 110, 80, squareNames[9], 0);
@@ -606,7 +603,7 @@ public class Board extends JFrame {
 
     }
 
-    
+
     public ArrayList<Square> getUnbuyableSquares() {
         return unbuyableSquares;
     }
@@ -618,37 +615,37 @@ public class Board extends JFrame {
     public Square getSquareAtIndex(int location) {
         return allSquares.get(location);
     }
-    
+
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
     }
 
     public void updatePanelPlayer2TextArea() {
-		// TODO Auto-generated method stub
-		String result = "";
-		result += "Current Balance: "+player2.getWallet()+"\n";
-		
-		result += "Title Deeds: \n";
-		for(int i = 0; i < player2.getTitleDeeds().size(); i++) {
-			result += " - "+ getAllSquares().get(player2.getTitleDeeds().get(i)).getName()+"\n";
-		}
-		
-		panelPlayer2TextArea.setText(result);
-	}
+        // TODO Auto-generated method stub
+        String result = "";
+        result += "Current Balance: " + player2.getWallet() + "\n";
 
-	public void updatePanelPlayer1TextArea() {
-		// TODO Auto-generated method stub
-		String result = "";
-		result += "Current Balance: "+player1.getWallet()+"\n";
-		
-		result += "Title Deeds: \n";
-		for(int i = 0; i < player1.getTitleDeeds().size(); i++) {
-			result += " - "+ getAllSquares().get(player1.getTitleDeeds().get(i)).getName()+"\n";
-		}
-		
-		
-		panelPlayer1TextArea.setText(result);
-	}
+        result += "Title Deeds: \n";
+        for (int i = 0; i < player2.getTitleDeeds().size(); i++) {
+            result += " - " + getAllSquares().get(player2.getTitleDeeds().get(i)).getName() + "\n";
+        }
+
+        panelPlayer2TextArea.setText(result);
+    }
+
+    public void updatePanelPlayer1TextArea() {
+        // TODO Auto-generated method stub
+        String result = "";
+        result += "Current Balance: " + player1.getWallet() + "\n";
+
+        result += "Title Deeds: \n";
+        for (int i = 0; i < player1.getTitleDeeds().size(); i++) {
+            result += " - " + getAllSquares().get(player1.getTitleDeeds().get(i)).getName() + "\n";
+        }
+
+
+        panelPlayer1TextArea.setText(result);
+    }
 
     public static void setNowPlaying(int nowPlaying) {
         Board.nowPlaying = nowPlaying;
