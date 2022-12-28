@@ -14,7 +14,7 @@ public class Sound {
     private float previousVolume = 0;
 
     public Sound() {
-        String path = "D:\\College\\Senior\\OOP\\Project\\Monopoly\\Sound\\BGM.wav";
+        String path = "Sound/BGM.wav";
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
             clip = AudioSystem.getClip();
