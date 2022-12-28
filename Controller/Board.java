@@ -87,7 +87,7 @@ public class Board extends JFrame {
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-					if(dice1.getFaceValue() == dice2.getFaceValue()) {
+					if(dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 6 || dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 1) {
 						doubleDiceForPlayer1 = true;
 					} else {
 						doubleDiceForPlayer1 = false;
@@ -125,7 +125,7 @@ public class Board extends JFrame {
 					dice1.rollDice();
 					dice2.rollDice();
 					int dicesTotal = dice1.getFaceValue() + dice2.getFaceValue();
-					if(dice1.getFaceValue() == dice2.getFaceValue()) {
+					if(dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 6 || dice1.getFaceValue() == dice2.getFaceValue() && dice1.getFaceValue() == 1) {
 						doubleDiceForPlayer2 = true;
 					} else {
 						doubleDiceForPlayer2 = false;
