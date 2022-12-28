@@ -233,9 +233,17 @@ public class Player extends JPanel {
 		currentSquareNumber = targetSquare;
 		
 		if(Board.nowPlaying == 0) {
-			this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
+			if(targetSquare == 24) {
+				this.setLocation(xLocationsOfPlayer1[8], yLocationsOfPlayer1[8]);
+				currentSquareNumber = 8;
+			} else 
+				this.setLocation(xLocationsOfPlayer1[targetSquare], yLocationsOfPlayer1[targetSquare]);
 		} else {
-			this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
+			if(targetSquare == 24) {
+				this.setLocation(xLocationsOfPlayer2[8], yLocationsOfPlayer2[8]);
+				currentSquareNumber = 8;
+			} else
+				this.setLocation(xLocationsOfPlayer2[targetSquare], yLocationsOfPlayer2[targetSquare]);
 		}
 		
 		if(ledger.containsKey(this.getCurrentSquareNumber())) {

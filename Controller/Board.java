@@ -70,8 +70,9 @@ public class Board extends JFrame {
         infoConsole.setBounds(game.getX() + 10, game.getY() + 50, game.getWidth() - 20, 80);
         game.add(infoConsole);
         infoConsole.setLineWrap(true);
-        infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
+		infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
         infoConsole.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
+
 
         Dice dice1 = new Dice(game.getX() + 120, infoConsole.getHeight() + 120, 40, 40);
         game.add(dice1);
@@ -297,8 +298,9 @@ public class Board extends JFrame {
 
 
         JLabel panelPlayer1Title = new JLabel("Player 1 All Wealth");
-        panelPlayer1Title.setForeground(Color.WHITE);
-        panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
+		panelPlayer1Title.setForeground(Color.WHITE);
+		panelPlayer1Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer1Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
         panelPlayer1Title.setBounds(0, 0, infoPlayer1.getWidth(), 40);
         panelPlayer1Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
 
@@ -315,8 +317,9 @@ public class Board extends JFrame {
         infoPlayer2.setLayout(null);
 
         JLabel panelPlayer2Title = new JLabel("Player 2 All Wealth");
-        panelPlayer2Title.setForeground(Color.WHITE);
-        panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
+		panelPlayer2Title.setForeground(Color.WHITE);
+		panelPlayer2Title.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPlayer2Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
         panelPlayer2Title.setBounds(0, 0, infoPlayer2.getWidth(), 40);
         panelPlayer2Title.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
 
@@ -340,7 +343,7 @@ public class Board extends JFrame {
 
     public void initializeCell() {
         String[] squareNames = {
-                "Go",
+                "GO",
                 "Ha Noi",
                 "Community Chest",
                 "Hai Phong",
@@ -348,7 +351,7 @@ public class Board extends JFrame {
                 "Cao Bang",
                 "Lang Son",
                 "Thai Nguyen",
-                "Roll once",
+                "JAIL",
                 "Son La",
                 "Squeeze Play",
                 "Ha Tien",
@@ -356,7 +359,7 @@ public class Board extends JFrame {
                 "Community Chest",
                 "Binh Thuan",
                 "Ninh Thuan",
-                "Free Parking",
+                "FREE PARKING",
                 "Khanh Hoa",
                 "Pay Taxes",
                 "Binh Duong",
@@ -364,7 +367,7 @@ public class Board extends JFrame {
                 "Dong Nai",
                 "Squeeze Play",
                 "Tay Ninh",
-                "Jail",
+                "GO TO JAIL",
                 "Vung Tau",
                 "Long An",
                 "Ben Tre",
@@ -628,18 +631,20 @@ public class Board extends JFrame {
     }
 
     public void updatePanelPlayer2TextArea() {
-        // TODO Auto-generated method stub
-        String result = "";
-        result += "Current Balance: " + player2.getWallet() + "\n";
-
-        result += "Title Deeds: \n";
-        for (int i = 0; i < player2.getTitleDeeds().size(); i++) {
-            result += " - " + getAllSquares().get(player2.getTitleDeeds().get(i)).getName() + "\n";
-        }
+		// TODO Auto-generated method stub
+		String result = "";
+		result += "Current Balance: "+player2.getWallet()+"\n";
+		
+		result += "Title Deeds: \n";
+		for(int i = 0; i < player2.getTitleDeeds().size(); i++) {
+			result += " - "+ getAllSquares().get(player2.getTitleDeeds().get(i)).getName()+"\n";
+		}
+		
+		panelPlayer2TextArea.setText(result);
         panelPlayer2TextArea.setFont(new Font(Font.DIALOG,  Font.BOLD, 15));
-        panelPlayer2TextArea.setText(result);
-    }
 
+	}
+    
     public void updatePanelPlayer1TextArea() {
         // TODO Auto-generated method stub
         String result = "";
