@@ -12,32 +12,34 @@ import java.io.IOException;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class Board extends JFrame {
-    private ArrayList<Square> allSquares = new ArrayList<Square>();
-    private ArrayList<Square> unbuyableSquares = new ArrayList<Square>(); // squares like "Go", "Chances" etc...
-    private int screenWidth = 1536;
-    private int screenHeight = 864;
+import static Controller.MainFrame.musicBtn;
+import static Controller.MainFrame.muteBtn;
 
-	static int turnCounter = 0;
-    static int nowPlaying = 0;
-	static JTextArea infoConsole;
+public class Board extends JFrame {
+    protected ArrayList<Square> allSquares = new ArrayList<Square>();
+    protected ArrayList<Square> unbuyableSquares = new ArrayList<Square>(); // squares like "Go", "Chances" etc...
+    protected int screenWidth = 1536;
+    protected int screenHeight = 864;
+
+    protected static int turnCounter = 0;
+    protected static int nowPlaying = 0;
+    protected static JTextArea infoConsole;
 
     protected Sound clickSound = new Sound();
 
-	ArrayList<Player> players = new ArrayList<Player>();
-    JButton btnNextTurn;
-	JButton btnRollDice;
-	JButton btnPayRent;
-	JButton btnBuy;
-    JTextArea panelPlayer1TextArea;
-	JTextArea panelPlayer2TextArea;
-    Player player1;
-	Player player2;
-	Boolean doubleDiceForPlayer1 = false;
-	Boolean doubleDiceForPlayer2 = false;
+    protected ArrayList<Player> players = new ArrayList<Player>();
+    protected JButton btnNextTurn;
+    protected JButton btnRollDice;
+    protected JButton btnPayRent;
+    protected JButton btnBuy;
+    protected JTextArea panelPlayer1TextArea;
+    protected JTextArea panelPlayer2TextArea;
+    protected Player player1;
+    protected Player player2;
+	protected Boolean doubleDiceForPlayer1 = false;
+	protected Boolean doubleDiceForPlayer2 = false;
 
-
-
+    protected MainFrame mainFrame;
 
     public Board() {
         setTitle("Monopoly");
@@ -272,9 +274,8 @@ public class Board extends JFrame {
                 int choice = JOptionPane.showConfirmDialog(this, "Are you sure?\nThe game will be reset", "Back to Menu", JOptionPane.YES_NO_OPTION);
                 if (choice == 0) {
                     dispose();
-                    MainFrame frame = new MainFrame();
+                    mainFrame = new MainFrame();
                 }
-
             }
         });
         game.add(exitBtn);
